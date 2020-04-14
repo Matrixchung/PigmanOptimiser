@@ -1,0 +1,13 @@
+# 默认允许主世界猪人塔
+disableWorlds:
+  - world_the_nether
+  - world_the_end
+# 猪人区块的 X Z 坐标
+# 格式: WorldName LocationX LocationZ
+pigManChunkLists:
+  - world 100 100
+  - world 1 1
+# 每个区块(16x16)的猪人限制
+perChunkPigManLimit: 50
+# 每个世界的猪人限制
+perWorldPigManLimit: 200

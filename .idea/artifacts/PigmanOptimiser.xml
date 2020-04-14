@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PigmanOptimiser">
+    <output-path>$PROJECT_DIR$/../../测试服务端-1.15/plugins</output-path>
+    <root id="archive" name="PigmanOptimiser.jar">
+      <element id="module-output" name="PigmanOptimiser" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+    </root>
+  </artifact>
+</component>

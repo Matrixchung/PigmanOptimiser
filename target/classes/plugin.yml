@@ -1,0 +1,5 @@
+name: PigmanOptimiser
+version: 1.0-SNAPSHOT
+main: com.matrix.pigmanoptimiser.PigmanOptimiser
+api-version: 1.13
+authors: [Matrixchung]

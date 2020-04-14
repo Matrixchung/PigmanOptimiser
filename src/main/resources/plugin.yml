@@ -1,0 +1,5 @@
+name: PigmanOptimiser
+version: ${project.version}
+main: com.matrix.pigmanoptimiser.PigmanOptimiser
+api-version: 1.13
+authors: [Matrixchung]
