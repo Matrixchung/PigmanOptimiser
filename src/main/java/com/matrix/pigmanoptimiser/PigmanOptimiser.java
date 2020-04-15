@@ -1,5 +1,6 @@
 package com.matrix.pigmanoptimiser;
 
+import com.matrix.pigmanoptimiser.command.OnPlayerCommand;
 import com.matrix.pigmanoptimiser.events.OnEntitySpawn;
 import com.matrix.pigmanoptimiser.events.OnPlayerInteract;
 import com.matrix.pigmanoptimiser.manager.ChunkManager;
@@ -86,6 +87,7 @@ public final class PigmanOptimiser extends JavaPlugin {
                 getLogger().warning("不支持您的 Minecraft 版本,插件将不会启动！");
                 return;
         }
+        Bukkit.getPluginCommand("pigman").setExecutor(new OnPlayerCommand());
         Bukkit.getPluginManager().registerEvents(new OnEntitySpawn(),this);
         //Bukkit.getPluginManager().registerEvents(new OnPlayerInteract(),this);
         for(String s:ChunkManager.printAll()){

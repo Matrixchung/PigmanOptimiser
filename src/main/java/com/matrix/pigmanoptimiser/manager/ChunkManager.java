@@ -5,38 +5,24 @@ import org.bukkit.Chunk;
 import java.util.*;
 
 public class ChunkManager {
-    public static HashMap<int[],String> chunkList = new HashMap<>();
+    public static HashSet<MyChunk> chunkList =new HashSet<>();
     public static void add(Chunk chunk){
-        String worldName = chunk.getWorld().getName();
-        int[] xz = new int[3];
-        xz[0]=chunk.getX();
-        xz[1]=chunk.getZ();
-        chunkList.put(xz,worldName);
+        MyChunk chunk1 = new MyChunk(chunk);
+        if(!chunkList.contains(chunk1))  chunkList.add(chunk1);
     }
     public static void add(int x, int z, String worldName){
-        int[] xz = new int[3];
-        xz[0]=x;
-        xz[1]=z;
-        chunkList.put(xz,worldName);
+        MyChunk chunk1 = new MyChunk(x,z,worldName);
+        if(!chunkList.contains(chunk1)) chunkList.add(chunk1);
     }
     public static boolean check(Chunk chunk){
-        String worldName = chunk.getWorld().getName();
-        int[] xz = new int[3];
-        xz[0]=chunk.getX();
-        xz[1]=chunk.getZ();
-        if(chunkList.containsKey(xz)){
-            return chunkList.get(xz).equals(worldName);
-        }
+        MyChunk chunk1 = new MyChunk(chunk);
+        if(chunkList.contains(chunk1)) return true;
         return false;
     }
     public static ArrayList<String> printAll(){
         ArrayList<String> result = new ArrayList<>();
-        Iterator iter = chunkList.entrySet().iterator();
-        int[] xz;
-        while(iter.hasNext()){
-            Map.Entry entry = (Map.Entry) iter.next();
-            xz= (int[]) entry.getKey();
-            result.add("X: "+xz[0]+" Z: "+xz[1]+" World: "+entry.getValue());
+        for(MyChunk chunk:chunkList){
+            result.add("X: "+chunk.getX()+" Z: "+chunk.getZ()+" World: "+chunk.getWorldName());
         }
         return result;
     }
