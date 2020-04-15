@@ -10,7 +10,8 @@ pigManChunkLists:
   - world 1 1
 # 猪人堆叠位置的 X Y Z 坐标
 # 格式 WorldName BlockLocationX BlockLocationY BlockLocationZ
-# 使用指令 /pigman setBlock <X> <Y> <Z> 设置指定方块为猪人堆叠位置（在此方块位置周围3*4*3的猪人将会被取消AI）
+# 使用指令 /pigman setBlock <X> <Y> <Z> 设置指定方块为猪人堆叠位置（在此方块位置周围3*4*3的生物将会被取消AI）
+# 不止限于猪人的优化 有生物密集堆叠的位置都可以加以设置
 pigManBlockLists:
   - world 0 80 0
 # 每个区块(16x16)的*总生物*数量限制

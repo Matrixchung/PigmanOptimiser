@@ -3,3 +3,13 @@ version: 1.0-SNAPSHOT
 main: com.matrix.pigmanoptimiser.PigmanOptimiser
 api-version: 1.13
 authors: [Matrixchung]
+softdepend:
+  - [Multiverse-Core]
+commands:
+  pigman:
+    description: PigmanOptimiser functions.
+    permission: pigmanoptimiser.use
+permissions:
+  pigmanoptimiser.use:
+    description: PigmanOptimiser base permission
+    default: op
