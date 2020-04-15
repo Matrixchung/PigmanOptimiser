@@ -31,5 +31,5 @@ public interface AI_Util_Main
 	public boolean addOpenDoorAI(LivingEntity e,boolean flag,int prop);   
 	public boolean addBreakDoorAI(LivingEntity e,int prop);
 	public boolean addMoveInDoorAI(LivingEntity e,int prop);
-	
+	public boolean addPigmanAI(LivingEntity e,int prop);
 }

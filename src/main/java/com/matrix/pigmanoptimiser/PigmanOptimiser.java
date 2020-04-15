@@ -1,22 +1,16 @@
 package com.matrix.pigmanoptimiser;
 
+import com.matrix.pigmanoptimiser.ai.*;
 import com.matrix.pigmanoptimiser.command.OnPlayerCommand;
 import com.matrix.pigmanoptimiser.events.OnEntitySpawn;
-import com.matrix.pigmanoptimiser.events.OnPlayerInteract;
 import com.matrix.pigmanoptimiser.manager.ChunkManager;
 import com.matrix.pigmanoptimiser.reflect.ReflectionManager;
-import com.matrix.pigmanoptimiser.ai.AI_Util_Main;
-import com.matrix.pigmanoptimiser.ai.Attribute_Util_Main;
-import com.matrix.pigmanoptimiser.ai.Control_Util_Main;
-import com.matrix.pigmanoptimiser.ai.Navigation_Util_Main;
+import com.matrix.pigmanoptimiser.tasks.MainTimerTask;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class PigmanOptimiser extends JavaPlugin {
     private static PigmanOptimiser plugin;
@@ -35,7 +29,7 @@ public final class PigmanOptimiser extends JavaPlugin {
         List<String> loadChunkLists ;
         try{
             saveDefaultConfig();
-            disableWorlds = new HashSet<String>(getConfig().getStringList("disableWorlds"));
+            disableWorlds = new HashSet<>(getConfig().getStringList("disableWorlds"));
             loadChunkLists = getConfig().getStringList("pigManChunkLists");
             perChunkLimit = getConfig().getInt("perChunkLimit");
             perWorldLimit = getConfig().getInt("perWorldPigManLimit");
@@ -89,17 +83,24 @@ public final class PigmanOptimiser extends JavaPlugin {
         }
         Bukkit.getPluginCommand("pigman").setExecutor(new OnPlayerCommand());
         Bukkit.getPluginManager().registerEvents(new OnEntitySpawn(),this);
-        //Bukkit.getPluginManager().registerEvents(new OnPlayerInteract(),this);
+
         for(String s:ChunkManager.printAll()){
             getLogger().info(s);
         }
+        //MainTimerTask task = new MainTimerTask();
+        //Bukkit.getScheduler().runTaskLaterAsynchronously(this, task ,20);
         getLogger().info("PigmanOptimiser 已启动");
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-
+        Bukkit.getScheduler().cancelTasks(this);
+        if(!ChunkManager.addList.isEmpty()){
+            ArrayList<String> perList = (ArrayList<String>) getConfig().get("pigManChunkLists");
+            perList.addAll(ChunkManager.addList);
+            getConfig().set("pigManChunkLists",perList);
+        }
     }
     public static PigmanOptimiser getPlugin(){
         return plugin;

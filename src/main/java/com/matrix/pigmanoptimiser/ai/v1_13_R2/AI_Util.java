@@ -209,4 +209,8 @@ public class AI_Util implements AI_Util_Main
 		new AI_Util().addAItoGoalSelector(e,new PathfinderGoalMoveIndoors((EntityCreature) new AI_Util().getHandle(e)),prop);
 		return true;
 	}
+	@Override
+	public boolean addPigmanAI(LivingEntity e, int prop) {
+		return false;
+	}
 }

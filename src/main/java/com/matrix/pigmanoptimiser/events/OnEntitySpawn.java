@@ -1,10 +1,8 @@
 package com.matrix.pigmanoptimiser.events;
 
+import com.matrix.pigmanoptimiser.PigZombieAI;
 import com.matrix.pigmanoptimiser.PigmanOptimiser;
-import com.matrix.pigmanoptimiser.entity.MyEntity;
 import com.matrix.pigmanoptimiser.manager.ChunkManager;
-import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,16 +18,7 @@ public class OnEntitySpawn implements Listener {
                     if(e.getEntity().getWorld().getEntitiesByClass(PigZombie.class).size()<PigmanOptimiser.perWorldLimit&&e.getLocation().getChunk().getEntities().length<PigmanOptimiser.perChunkLimit){
                         CreatureSpawnEvent.SpawnReason reason = e.getSpawnReason();
                         if(!(reason.equals(CreatureSpawnEvent.SpawnReason.CUSTOM))){
-                            e.setCancelled(true);
-                            EntityType type = e.getEntityType();
-                            Location loc = e.getLocation();
-                            MyEntity pigMan = new MyEntity(type,loc);
-                            //e.getEntity().remove();
-                            pigMan.spawnEntity();
-                            if(pigMan.isSpawned()){
-                                PigmanOptimiser.getPlugin().getLogger().info("SpawnReason: "+reason);
-                                PigmanOptimiser.getPlugin().getLogger().info("MyPigMan Spawned!");
-                            }
+                            PigZombieAI.applyCustomAI(e.getEntity());
                         }
                     }
                 }

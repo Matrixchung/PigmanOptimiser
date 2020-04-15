@@ -90,4 +90,8 @@ public class AIManager
 	{
 		return PigmanOptimiser.nms_ai.addBreakDoorAI(this.targetEntity,prop);
 	}
+	public boolean addPigmanAI(int prop)
+	{
+		return PigmanOptimiser.nms_ai.addPigmanAI(this.targetEntity,prop);
+	}
 }

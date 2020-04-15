@@ -7,13 +7,14 @@ import java.util.HashSet;
 
 public class BlockManager {
     public static HashSet<MyBlock> blockList =new HashSet<>();
+    public static HashSet<String> addList = new HashSet<>();
     public static void add(Block block){
         MyBlock block1 = new MyBlock(block);
-        if(!blockList.contains(block1))  blockList.add(block1);
+        blockList.add(block1);
     }
     public static void add(int x, int y, int z, String worldName){
         MyBlock block1 = new MyBlock(x,y,z,worldName);
-        if(!blockList.contains(block1))  blockList.add(block1);
+        blockList.add(block1);
     }
     public static boolean check(Block block){
         MyBlock block1 = new MyBlock(block);
@@ -26,5 +27,8 @@ public class BlockManager {
             result.add("X: "+block.getCoordX()+" Y: "+block.getCoordY()+" Z: "+block.getCoordZ()+" World: "+block.getWorldName());
         }
         return result;
+    }
+    public static void addToFile(int x,int y,int z,String worldName){
+        addList.add(worldName+" "+x+" "+y+" "+z);
     }
 }

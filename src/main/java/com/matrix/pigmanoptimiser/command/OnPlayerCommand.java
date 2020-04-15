@@ -1,12 +1,14 @@
 package com.matrix.pigmanoptimiser.command;
 
 import com.matrix.pigmanoptimiser.PigmanOptimiser;
+import com.matrix.pigmanoptimiser.debug.DebugPigmanGenerator;
 import com.matrix.pigmanoptimiser.manager.ChunkManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import sun.security.ssl.Debug;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,6 +48,18 @@ public class OnPlayerCommand implements TabExecutor {
                             commandSender.sendMessage(ChatColor.RED+"[PigmanOptimiser]此命令无法在控制台执行!");
                         }
                         return true;
+                    case "debug":
+                        if(commandSender instanceof Player){
+                            try {
+                                DebugPigmanGenerator.generateDebugMobs((Player) commandSender);
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (NoSuchFieldException e) {
+                                e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     default:
                         commandSender.sendMessage(ChatColor.RED+"[PigmanOptimiser]"+ChatColor.AQUA+"用法: /pigman <setChunk> / <reload> / <check> / <setBlock> <X> <Y> <Z>");
                         return true;

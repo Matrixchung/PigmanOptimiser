@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import javax.annotation.Nullable;
 
-import com.matrix.pigmanoptimiser.ai.v1_15_R1.PathfinderGoalInterface;
-import io.netty.util.internal.UnstableApi;
+
+import net.minecraft.server.v1_15_R1.*;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
@@ -16,17 +16,6 @@ import org.bukkit.event.entity.EntityTargetEvent.TargetReason;
 import com.matrix.pigmanoptimiser.ai.AI_Util_Main;
 import com.matrix.pigmanoptimiser.ai.AIItem.AbstractAIItem;
 
-import net.minecraft.server.v1_15_R1.PathfinderGoalBreakDoor;
-import net.minecraft.server.v1_15_R1.PathfinderGoalFleeSun;
-import net.minecraft.server.v1_15_R1.EntityCreature;
-import net.minecraft.server.v1_15_R1.EntityInsentient;
-import net.minecraft.server.v1_15_R1.EntityLiving;
-import net.minecraft.server.v1_15_R1.PathfinderGoal;
-import net.minecraft.server.v1_15_R1.PathfinderGoalHurtByTarget;
-import net.minecraft.server.v1_15_R1.PathfinderGoalMeleeAttack;
-import net.minecraft.server.v1_15_R1.PathfinderGoalPanic;
-import net.minecraft.server.v1_15_R1.PathfinderGoalDoorOpen;
-import net.minecraft.server.v1_15_R1.PathfinderGoalSelector;
 public class AI_Util implements AI_Util_Main
 {
     private void KillGoalSelector(EntityInsentient e) throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
@@ -208,6 +197,13 @@ public class AI_Util implements AI_Util_Main
     public boolean addMoveInDoorAI(LivingEntity e,int prop)  //unsupported
     {
         return false;
+    }
+
+    @Override
+    public boolean addPigmanAI(LivingEntity e, int prop) {
+        //new com.matrix.pigmanoptimiser.ai.v1_15_R1.AI_Util().addAItoGoalSelector(e,new PathfinderGoalZombieAttack((EntityZombie) new com.matrix.pigmanoptimiser.ai.v1_15_R1.AI_Util().getHandle(e),1.0D,false),prop);
+        new com.matrix.pigmanoptimiser.ai.v1_15_R1.AI_Util().addAItoTargetSelector(e,new PigmanAI((EntityPigZombie) new com.matrix.pigmanoptimiser.ai.v1_15_R1.AI_Util().getHandle(e)),prop);
+        return true;
     }
 }
 

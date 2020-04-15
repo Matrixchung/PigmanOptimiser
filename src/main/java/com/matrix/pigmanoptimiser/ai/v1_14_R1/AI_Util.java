@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 
 import javax.annotation.Nullable;
 
+import com.matrix.pigmanoptimiser.ai.v1_14_R1.PigmanAI;
+import net.minecraft.server.v1_14_R1.EntityPigZombie;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
@@ -204,5 +206,10 @@ public class AI_Util implements AI_Util_Main
 	public boolean addMoveInDoorAI(LivingEntity e,int prop)  //unsupported
 	{
 		return false;
+	}
+	@Override
+	public boolean addPigmanAI(LivingEntity e, int prop) {
+		new com.matrix.pigmanoptimiser.ai.v1_14_R1.AI_Util().addAItoTargetSelector(e,new PigmanAI((EntityPigZombie)e),prop);
+		return true;
 	}
 }
